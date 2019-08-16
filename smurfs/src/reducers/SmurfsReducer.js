@@ -1,7 +1,7 @@
 import {
-  FETCH_Smurfs_DATA_START,
-  FETCH_Smurfs_DATA_SUCCESS,
-  FETCH_Smurfs_DATA_FAILURE
+  FETCH_SMURF_DATA_START,
+  FETCH_SMURF_DATA_SUCCESS,
+  FETCH_SMURF_DATA_FAILURE
 } from '../actions';
 
 const initialState = {
@@ -12,13 +12,13 @@ const initialState = {
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_Smurfs_DATA_START:
+    case FETCH_SMURF_DATA_START:
       return {
         ...state,
         isLoading: true,
         error: ''
       };
-    case FETCH_Smurfs_DATA_SUCCESS:
+    case FETCH_SMURF_DATA_SUCCESS:
       return {
         ...state,
         isLoading: false,
@@ -29,8 +29,7 @@ export const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 error: action.payload
-            };
-            
+            }
     default:
       return state;
   }

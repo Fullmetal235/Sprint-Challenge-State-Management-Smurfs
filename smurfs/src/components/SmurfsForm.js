@@ -2,7 +2,7 @@ import React from 'react'
 import {withFormik, Form, Field} from 'formik'
 import axios from 'axios'
 
-import {getData} from '../actions'
+//import {getData} from '../actions'
 
 
 const SmurfForm = () => {
