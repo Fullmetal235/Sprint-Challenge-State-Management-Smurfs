@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from 'react';
 import "./App.css";
 
 import {connect} from 'react-redux'
@@ -9,15 +9,19 @@ import SmurfsForm from './SmurfsForm.js'
 import Smurf from './Smurf.js'
 
 const App = props => {
+  useEffect(() => {
+    console.log(props.smurfs)
+}, [props.smurfs])
   return (
     <div className="App">
       <h1>SMURFS! 2.0 W/ Redux</h1>
       <div>Welcome to your state management version of Smurfs!</div>
       <div>Start inside of your `src/index.js` file!</div>
       <div>Have fun!</div>
-      <SmurfsForm />
-      <button onClick={props.getData}>Check out our smurfs here</button>
-      {props.smurfs.map(person => 
+      
+      <SmurfsForm onClick={props.getData} />
+      <p>Check out our smurfs here</p>
+      {props.smurf &&props.smurfs.map(person => 
         <Smurf key={person.id} person={person} />
         )}
     </div>
