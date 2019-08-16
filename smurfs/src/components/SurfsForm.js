@@ -35,4 +35,4 @@ const SmurfsForm = withFormik({
     }
 })(SmurfForm )
 
-export default FormWithFormik
+export default SmurfsForm
