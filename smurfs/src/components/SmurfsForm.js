@@ -34,6 +34,6 @@ const SmurfsForm = withFormik({
         .catch(err => console.log(err))
     }
 
-})(SmurfForm )
+})(SmurfForm)
 
 export default SmurfsForm

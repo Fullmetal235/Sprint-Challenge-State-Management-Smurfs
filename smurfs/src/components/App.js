@@ -20,7 +20,7 @@ const App = props => {
       <div>Have fun!</div>
       
       <SmurfsForm onClick={props.getData} />
-      <p>Check out our smurfs here</p>
+      
       {props.smurf &&props.smurfs.map(person => 
         <Smurf key={person.id} person={person} />
         )}
