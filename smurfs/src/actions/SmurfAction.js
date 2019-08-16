@@ -8,7 +8,7 @@ export const getData = () => {
   return dispatch => {
     dispatch({ type: FETCH_Smurfs_DATA_START });
     axios
-      .get('https://Smurfsapi.herokuapp.com/films')
+      .get('http://localhost:3333/smurfs')
       .then(res => {
         // res.data.data
         console.log(res);
