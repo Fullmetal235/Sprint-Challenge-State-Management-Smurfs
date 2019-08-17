@@ -1,39 +1,45 @@
-import React from 'react'
-import {withFormik, Form, Field} from 'formik'
-import axios from 'axios'
+import React, {useState, useEffect} from 'react';
+import { connect } from 'react-redux'
+import { getData, sendData } from '../actions'
 
-//import {getData} from '../actions'
-
-const SmurfForm = () => {
+function SmurfForm(props) {
+    const [count, setCount] = useState(0)
     
-    return(
-        <Form>
-            <Field type="text" name="name" placeholder="Name" />
-            <Field type="text" name="age" placeholder="Age" />
-            <Field type="text" name="height" placeholder="Height" />
+    useEffect(() => {
+        props.getData()
+    },[])
+    
+    const [currentValue, setCurrentValue] = useState({name: '', age: '', height: ''})
+
+    function handleChanges(e) {
+        setCurrentValue({...currentValue, [e.target.name]: e.target.value})
+        console.log(currentValue)
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault()
+        props.sendData(currentValue)
+        // props.getDatas()
+        // setCurrentValue({...currentValue, name: '', age: '', height: ''})
+        setCount(count + 1)
+    }
+    
+
+    return (
+        <form onSubmit={handleSubmit}>
+            <input name='name' onChange={handleChanges}></input>
+            <input name='age' onChange={handleChanges}></input>
+            <input name='height' onChange={handleChanges}></input>
             <button type='submit'>Submit</button>
-        </Form>
+        </form>
     )
 }
 
-const SmurfsForm = withFormik({
 
-    mapPropsToValues({name, age, height}){
-       return{
-        name: name || '',
-        age: age || '',
-        height: height || '',
-        id: Date.now()
-        }
-    },
-    
-    handleSubmit(values){
-        console.log(values)
-        axios.post('http://localhost:3333/smurfs', values)
-        .then(res => console.log(res.data))
-        .catch(err => console.log(err))
+const mapStateToProps = state => {
+    return {
+        isPosting: state.isPosting
     }
+}
 
-})(SmurfForm)
-
-export default SmurfsForm
+export default connect(mapStateToProps,{getData, sendData})(SmurfForm)
