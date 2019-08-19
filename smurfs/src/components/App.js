@@ -9,9 +9,9 @@ import SmurfsForm from './SmurfsForm.js'
 import Smurf from './Smurf.js'
 
 const App = props => {
-  useEffect(() => {
-    console.log(props.smurfs)
-}, [props.smurfs])
+   useEffect(()=>{
+     getData()
+   },[])
   return (
     <div className="App">
       <h1>SMURFS! 2.0 W/ Redux</h1>
@@ -19,11 +19,11 @@ const App = props => {
       <div>Start inside of your `src/index.js` file!</div>
       <div>Have fun!</div>
       
-      <SmurfsForm onClick={props.getData} />
-      
-      {props.smurf &&props.smurfs.map(person => 
+      <SmurfsForm onClick={getData} />
+      {props.smurfs && props.smurfs.map(person => 
         <Smurf key={person.id} person={person} />
         )}
+        <p onClick={props.getData}>Checkout our smurfs here</p>
     </div>
   );
 
